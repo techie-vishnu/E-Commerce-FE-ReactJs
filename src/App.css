@@ -1,0 +1,15 @@
+.card:hover {
+  cursor: pointer;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.card-subtitle {
+  font-size: 0.7rem;
+}
