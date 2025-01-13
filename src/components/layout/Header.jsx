@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <Navbar bg="dark" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href="#home">പെട്ടിക്കട</Navbar.Brand>
+                <Navbar.Brand href="#home">VMart</Navbar.Brand>
                 <Nav className="ms-auto">
                     <Nav.Link href="#">
                         <i className="bi bi-cart"></i>
