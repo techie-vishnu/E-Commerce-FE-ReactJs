@@ -37,7 +37,6 @@ export const counterSlice = createSlice({
             saveCartArray(state.cartArray);
         },
         updateQuantity: (state, action) => {
-            console.log(action.payload);
             let p = action.payload.product ?? {};
             let newCount = parseInt(action.payload.count) ?? 0;
             if (newCount === 0) {
