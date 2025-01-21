@@ -1,7 +1,7 @@
 import './App.css'
 import Products from './components/products/Products'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import RootLayout from './components/layout/rootLayout.jsx';
+import RootLayout from './components/layout/RootLayout.jsx';
 import NotFound from './components/notFound/NotFound.jsx';
 import Cart from './components/products/Cart.jsx';
 
