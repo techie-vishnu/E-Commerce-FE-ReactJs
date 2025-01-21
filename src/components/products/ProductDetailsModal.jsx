@@ -1,16 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Carousel from 'react-bootstrap/Carousel';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart, removeFromCart } from '../../store/cart/cartSlice';
 
 export default function ProductDetailsModal({ pData, show, onHide }) {
+    const dispatch = useDispatch()
+    const hasProductInCart = useSelector(state => (pData !== null && state.cart.cartArray.find(p => pData.id == p.id)) ? true : false)
+
     if (pData !== null) {
         return (
-            <Modal
-                show={show}
-                onHide={onHide}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered>
+            <Modal show={show} onHide={onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         {pData.title}
@@ -40,9 +40,22 @@ export default function ProductDetailsModal({ pData, show, onHide }) {
                     </p>
                 </Modal.Body>
                 <Modal.Footer>
+                    {pData.stock > 15 ?
+                        (hasProductInCart ?
+                            <Button variant="danger" className='btn-sm float-end' onClick={(e) => { e.preventDefault(); dispatch(removeFromCart(pData)); }}>Remove from Cart</Button>
+                            :
+                            <Button variant="secondary" className='btn-sm float-end' onClick={(e) => { e.preventDefault(); dispatch(addToCart(pData)); }}>Add to Cart</Button>
+                        ) : (
+                            <Button variant="warning" className='btn-sm float-end' disabled>Out of Stock</Button>
+                        )
+                    }
                     <Button className='btn-sm' variant='secondary' onClick={onHide}>Close</Button>
                 </Modal.Footer>
             </Modal>
+        )
+    } else {
+        return (
+            <></>
         )
     }
 }
