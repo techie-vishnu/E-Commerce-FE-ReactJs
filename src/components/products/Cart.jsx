@@ -52,7 +52,7 @@ export default function Cart() {
                                                                     {/* <button className="btn btn-link px-2">
                                                                         <i className="bi bi-minus"></i>
                                                                     </button> */}
-                                                                    <input type="number" id={'p-quantity-' + product.id} min="0" max={product.stock} value={product.count} name={'p-quantity-' + product.id}
+                                                                    <input type="number" id={'p-quantity-' + product._id} min="0" max={product.stock} value={product.count} name={'p-quantity-' + product._id}
                                                                         className="form-control form-control-sm" onChange={(e) => { dispatch(updateQuantity({ product: product, count: e.target.value })); }} />
                                                                     {/* <button className="btn btn-link px-2">
                                                                         <i className="bi bi-plus"></i>

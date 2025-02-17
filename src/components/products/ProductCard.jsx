@@ -5,11 +5,11 @@ import { addToCart, removeFromCart } from '../../store/cart/cartSlice';
 
 export default function ProductCard({ product, productCallback }) {
     const dispatch = useDispatch()
-    const hasProductInCart = useSelector(state => state.cart.cartArray.find(p => product.id == p.id) ? true : false)
+    const hasProductInCart = useSelector(state => state.cart.cartArray.find(p => product._id == p._id) ? true : false)
 
     return (
         <div className='col-sm-6 col-md-4 col-lg-3 p-3'>
-            <Card key={product.id} className='shadow' title={product.description} >
+            <Card key={product._id} className='shadow' title={product.description} >
                 <Card.Img variant="top" src={product.thumbnail} onClick={() => productCallback(product)} />
                 <Card.Body onClick={() => productCallback(product)}>
                     <Card.Subtitle className="text-muted"><i>{product.category}</i></Card.Subtitle>

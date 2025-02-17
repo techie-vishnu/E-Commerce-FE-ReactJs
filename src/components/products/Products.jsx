@@ -10,7 +10,8 @@ import axios from 'axios';
 
 function Products() {
 
-    const [productsUrl, setProductsUrl] = useState('https://dummyjson.com/products');
+    const [baseUrl, setBaseUrl] = useState(import.meta.env.VITE_BACKEND_BASEURL);
+    const [productsUrl, setProductsUrl] = useState(import.meta.env.VITE_BACKEND_BASEURL + '/products');
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
@@ -21,11 +22,13 @@ function Products() {
 
     // For Categories Dropdown
     async function getCategories() {
-        await axios.get('https://dummyjson.com/products/categories')
+        await axios.get(baseUrl + '/products/categories')
             .then(res => {
-                setCategories(res.data)
+                setCategories(res.data.data)
             })
-            .catch((error) => { });
+            .catch((error) => {
+                console.log(error);
+             });
     }
 
     async function loadProducts() {
@@ -60,11 +63,11 @@ function Products() {
         let randomSortOrder = 'sortBy=' + sortBy[Math.floor(Math.random() * sortBy.length)] + '&order=' + order[Math.floor(Math.random() * order.length)];
 
         if (selectedCategory.trim() !== '')
-            setProductsUrl('https://dummyjson.com/products/category/' + selectedCategory.trim() + '?' + randomSortOrder);
+            setProductsUrl(baseUrl + '/products/category/' + selectedCategory.trim());
         else if (searchQuery.trim() !== '')
-            setProductsUrl('https://dummyjson.com/products/search?limit=0&q=' + searchQuery.trim());
+            setProductsUrl(baseUrl + '/products?limit=0&q=' + searchQuery.trim());
         else
-            setProductsUrl('https://dummyjson.com/products?' + randomSortOrder);
+            setProductsUrl(baseUrl + '/products?' + randomSortOrder);
     }
 
     useEffect(() => {

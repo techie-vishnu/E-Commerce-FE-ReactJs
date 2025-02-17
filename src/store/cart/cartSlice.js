@@ -32,7 +32,7 @@ export const counterSlice = createSlice({
         removeFromCart: (state, action) => {
             let p = action.payload;
             if (typeof p !== 'undefined') {
-                state.cartArray = state.cartArray.filter(c => c.id !== p.id)
+                state.cartArray = state.cartArray.filter(c => c._id !== p._id)
             }
             saveCartArray(state.cartArray);
         },
@@ -40,9 +40,9 @@ export const counterSlice = createSlice({
             let p = action.payload.product ?? {};
             let newCount = parseInt(action.payload.count) ?? 0;
             if (newCount === 0) {
-                state.cartArray = state.cartArray.filter(c => c.id !== p.id)
+                state.cartArray = state.cartArray.filter(c => c._id !== p._id)
             }
-            let index = state.cartArray.findIndex(c => c.id === p.id);
+            let index = state.cartArray.findIndex(c => c._id === p._id);
             if (index !== -1) {
                 state.cartArray[index].count = parseInt(action.payload.count)
             }

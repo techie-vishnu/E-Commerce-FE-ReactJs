@@ -6,7 +6,7 @@ import { addToCart, removeFromCart } from '../../store/cart/cartSlice';
 
 export default function ProductDetailsModal({ pData, show, onHide }) {
     const dispatch = useDispatch()
-    const hasProductInCart = useSelector(state => (pData !== null && state.cart.cartArray.find(p => pData.id == p.id)) ? true : false)
+    const hasProductInCart = useSelector(state => (pData !== null && state.cart.cartArray.find(p => pData._id == p._id)) ? true : false)
 
     if (pData !== null) {
         return (
