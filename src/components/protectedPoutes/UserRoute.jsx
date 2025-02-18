@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { setUserData } from '../../store/user/userSlice';
+import { useSelector } from 'react-redux';
 
-export const UserRoute = ({ isAdmin = false }) => {
-    const dispatch = useDispatch();
+
+export const UserRoute = ({ children, isAdmin = false }) => {
+    const [data, setData] = useState(null);
     const navigate = useNavigate();
     const userData = useSelector(state => state.user.userData);
 
@@ -15,10 +15,12 @@ export const UserRoute = ({ isAdmin = false }) => {
             if (userData !== null) {
                 if (isAdmin) {
                     if (Array.isArray(userData.roles) && userData.roles.includes('Admin')) {
-
+                        setData(userData);
                     } else {
                         navigate('/logout');
                     }
+                } else {
+                    setData(userData);
                 }
             } else {
                 navigate('/logout');
@@ -27,5 +29,11 @@ export const UserRoute = ({ isAdmin = false }) => {
             console.log(error);
             navigate('/logout');
         }
-    }
+    };
+
+    useEffect(() => {
+        checkUserLoggedIn()
+    }, [navigate, setData])
+
+    return data ? children : null;
 }

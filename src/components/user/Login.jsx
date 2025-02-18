@@ -30,8 +30,9 @@ function Login() {
                         if (response.token) {
                             sessionStorage.setItem('token', response.token);
                         }
-                        sessionStorage.setItem('user', JSON.stringify(response.data));
-                        dispatch(setUserData(response.data));
+                        if (response.data) {
+                            dispatch(setUserData(response.data));
+                        }
                         navigate('/');
                     } else if (response.error) {
                         setErrorMessage(response.error);
