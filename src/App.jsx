@@ -8,7 +8,7 @@ import Login from './components/user/Login.jsx';
 import SignUp from './components/user/SignUp.jsx';
 import { UserRoute } from './components/protectedPoutes/UserRoute.jsx';
 import Logout from './components/user/Logout.jsx';
-import MyOrders from './components/user/myOrders.jsx';
+import MyOrders from './components/user/MyOrders.jsx';
 
 
 const router = createBrowserRouter([

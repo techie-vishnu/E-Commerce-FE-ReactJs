@@ -1,9 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getUserData = () => {
+    if (sessionStorage.getItem('user') !== null) {
+        console.log(sessionStorage.getItem('user'));
+        return JSON.parse(sessionStorage.getItem('user') + '');
+    }
+    return null;
+}
+
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        userData: null
+        userData: getUserData()
     },
     reducers: {
         clearUserData: (state) => {
