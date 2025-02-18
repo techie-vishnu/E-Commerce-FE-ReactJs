@@ -40,7 +40,7 @@ export default function ProductDetailsModal({ pData, show, onHide }) {
                     </p>
                 </Modal.Body>
                 <Modal.Footer>
-                    {pData.stock > 15 ?
+                    {pData.stock > 0 ?
                         (hasProductInCart ?
                             <Button variant="danger" className='btn-sm float-end' onClick={(e) => { e.preventDefault(); dispatch(removeFromCart(pData)); }}>Remove from Cart</Button>
                             :

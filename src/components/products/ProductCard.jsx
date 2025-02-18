@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../store/cart/cartSlice';
 
 export default function ProductCard({ product, productCallback }) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const hasProductInCart = useSelector(state => state.cart.cartArray.find(p => product._id == p._id) ? true : false)
 
     return (
@@ -21,7 +21,7 @@ export default function ProductCard({ product, productCallback }) {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    {product.stock > 15 ?
+                    {product.stock > 0 ?
                         (hasProductInCart ?
                             <Button variant="danger" className='btn-sm float-end' onClick={(e) => { e.preventDefault(); dispatch(removeFromCart(product)); }}>Remove from Cart</Button>
                             :
